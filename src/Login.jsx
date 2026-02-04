@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import Button from "./Button";
+
 function Login() {
+  const navigate = useNavigate();
   return (
     <main>
       <form className="flex justify-between items-center md:gap-15 lg:gap-20 h-screen">
@@ -17,10 +21,15 @@ function Login() {
               className="border-gray-300 border text-sm  rounded-2xl py-3 px-3 w-full"
             />
           </div>
-          <button className="cursor-pointer p-2 bg-green-500 font-bold text-white rounded-2xl mt-6">
+          <Button
+            type="button"
+            onClick={() => navigate("dashboard")}
+            className="cursor-pointer p-2 bg-green-500 font-bold text-white rounded-2xl mt-6"
+          >
             Login
-          </button>
+          </Button>
         </div>
+
         <div className="bg-green-500 hidden md:block text-justify w-full h-screen ">
           <p className=" flex justify-center items-center h-screen text-white md:font-bold md:text-3xl lg:text-5xl lg:font-extrabold ">
             osa
