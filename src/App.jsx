@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import HomeSvg from "./components/HomeSvg";
 import Profile from "./Profile";
 import ArrowDown from "./components/ArrowUp";
+import StatCard from "./StatCard";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
 function App() {
   <HomeSvg />;
   <ArrowDown />;
+  <StatCard />;
   return <RouterProvider router={router} />;
 }
 
