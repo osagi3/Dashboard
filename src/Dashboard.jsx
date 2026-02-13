@@ -1,39 +1,66 @@
-// import ArrowIcon from "./components/ArrowIcon";
-// import ArrowDown from "./components/ArrowUp";
-import Clients from "./components/Clients";
-import MoneySvg from "./components/MoneySvg";
+import { useEffect, useState } from "react";
+import StatCard from "./StatCard";
+import { getDashboardData } from "./ApiBox";
 
 import Users from "./components/Users";
+import Clients from "./components/Clients";
+import MoneySvg from "./components/MoneySvg";
 import NavBar from "./NavBar";
-import StatCard from "./StatCard";
 
 function Dashboard() {
-  const usersToday = 5700;
-  const totalRevenue = 100;
-  const usersYesterday = 100;
+  const [usersToday, setUsersToday] = useState(0);
+  const [usersYesterday, setUsersYesterday] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await getDashboardData();
+
+        setUsersToday(data.usersToday);
+        setUsersYesterday(data.usersYesterday);
+        setTotalRevenue(data.totalRevenue);
+      } catch (err) {
+        console.error("Fetch failed:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
   let todayGrowth = 0;
+  if (usersYesterday !== 0) {
+    todayGrowth = ((usersToday - usersYesterday) / usersYesterday) * 100;
+  }
+  todayGrowth = Math.round(todayGrowth);
 
-  if (usersYesterday != 0) {
-    todayGrowth = (usersToday - usersYesterday) / usersYesterday;
+  const formattedGrowth = `${todayGrowth}%`;
+
+  if (isLoading) {
+    return <div className="p-10 text-xl">Loading dashboard...</div>;
   }
 
-  todayGrowth = Math.round(todayGrowth * 10000) / 10000;
-
   return (
-    <div className="flex bg-gray-300">
+    <div className="flex bg-gray-200 min-h-screen">
       <NavBar />
+
       <div className="flex gap-5 p-5">
         <StatCard
           label="Users"
           value={usersToday}
           icon={<Users color="white" className="w-7" />}
         />
+
         <StatCard
           label="Growth"
           value={todayGrowth}
+          displayValue={formattedGrowth}
           icon={<MoneySvg color="white" className="w-7" />}
         />
+
         <StatCard
           label="Revenue"
           value={totalRevenue}
