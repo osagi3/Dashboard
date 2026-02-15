@@ -5,7 +5,6 @@ import { getDashboardData } from "./ApiBox";
 import Users from "./components/Users";
 import Clients from "./components/Clients";
 import MoneySvg from "./components/MoneySvg";
-import NavBar from "./NavBar";
 
 function Dashboard() {
   const [usersToday, setUsersToday] = useState(0);
@@ -40,13 +39,11 @@ function Dashboard() {
   const formattedGrowth = `${todayGrowth}%`;
 
   if (isLoading) {
-    return <div className="p-10 text-xl">Loading dashboard...</div>;
+    return <div className="p-10 text-xl font-bold">Loading dashboard...</div>;
   }
 
   return (
     <div className="flex bg-gray-200 min-h-screen">
-      <NavBar />
-
       <div className="flex gap-5 p-5">
         <StatCard
           label="Users"

@@ -23,7 +23,7 @@ function NavBar() {
         <li className="font-bold">
           <Button
             type="button"
-            onClick={() => navigate("/profile")}
+            onClick={() => navigate("/dashboard/profile")}
             className="pb-5  flex items-center gap-1 cursor-pointer"
           >
             <div className="bg-green-500 p-2 rounded-xl">
@@ -41,6 +41,7 @@ function NavBar() {
       >
         Sign out
       </Button>
+      {/* <Outlet /> */}
     </div>
   );
 }
