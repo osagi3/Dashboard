@@ -2,10 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import "./index.css";
 import Login from "./Login";
-import HomeSvg from "./components/HomeSvg";
 import Profile from "./Profile";
-import ArrowDown from "./components/ArrowUp";
-import StatCard from "./StatCard";
 import Layout from "./Layout";
 
 const router = createBrowserRouter([
@@ -22,9 +19,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  <HomeSvg />;
-  <ArrowDown />;
-  <StatCard />;
   return <RouterProvider router={router} />;
 }
 
