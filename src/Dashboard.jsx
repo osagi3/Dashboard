@@ -1,25 +1,34 @@
 import { useEffect, useState } from "react";
 import StatCard from "./StatCard";
-import { getDashboardData } from "./ApiBox";
+// import { getDashboardData } from "./ApiBox";
+import { getDashboardData, getRecentUser } from "./ApiBox";
+
 import Users from "./components/Users";
 import Clients from "./components/Clients";
 import MoneySvg from "./components/MoneySvg";
 import UsersChart from "./UsersChart";
+import RecentUsersTable from "./RecentUsersTable";
 
 function Dashboard() {
   const [usersToday, setUsersToday] = useState(0);
   const [usersYesterday, setUsersYesterday] = useState(0);
   const [totalRevenue, setTotalRevenue] = useState(0);
+  const [recentUsers, setRecentUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await getDashboardData();
+        const [statsData, userList] = await Promise.all([
+          getDashboardData(),
+          getRecentUser(),
+        ]);
 
-        setUsersToday(data.usersToday);
-        setUsersYesterday(data.usersYesterday);
-        setTotalRevenue(data.totalRevenue);
+        setUsersToday(statsData.usersToday);
+        setUsersYesterday(statsData.usersYesterday);
+        setTotalRevenue(statsData.totalRevenue);
+
+        setRecentUsers(userList);
       } catch (err) {
         console.error("Fetch failed:", err);
       } finally {
@@ -42,9 +51,9 @@ function Dashboard() {
     { day: "Monday", users: 9 },
     { day: "Tuesday", users: 5 },
     { day: "Wednesday", users: 6 },
-    { day: "Thursday", users: 7 },
+    { day: "Thursday", users: 16 },
     { day: "Friday", users: 4 },
-    { day: "Saturday", users: 9 },
+    { day: "Saturday", users: 2 },
     { day: "Sunday", users: usersToday },
   ];
 
@@ -75,6 +84,7 @@ function Dashboard() {
         />
       </div>
       <UsersChart data={chartData} />
+      <RecentUsersTable users={recentUsers} />
     </div>
   );
 }

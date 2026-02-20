@@ -23,3 +23,15 @@ export const getDashboardData = async () => {
     };
   }
 };
+
+export const getRecentUser = async () => {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await res.json();
+    return data.slice(0, 5);
+  } catch (error) {
+    console.error("API error:", error);
+    return [];
+  }
+};
+getRecentUser();

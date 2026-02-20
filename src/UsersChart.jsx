@@ -8,9 +8,13 @@ import {
   YAxis,
 } from "recharts";
 
-function UsersChart({ data }) {
+function UsersChart({ data, darkMode }) {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow mt-6 w-full h-80">
+    <div
+      className={`"bg-white p-6 rounded-2xl shadow mt-6 w-full h-80" ${
+        darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+      }`}
+    >
       <h2 className="text-lg font-bold mb-1">Users Growth (7 days)</h2>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
