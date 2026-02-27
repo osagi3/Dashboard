@@ -1,4 +1,11 @@
-function Users({ color, className }) {
+import React from "react";
+
+type IUsers = {
+  className?: string;
+  color?: string;
+};
+
+function Users({ color, className }: IUsers) {
   return (
     <div>
       <svg

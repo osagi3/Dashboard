@@ -1,4 +1,10 @@
-function PageSvg({ color, className }) {
+import React from "react";
+
+type IPageSvg = {
+  className?: string;
+  color: string;
+};
+function PageSvg({ color, className }: IPageSvg) {
   return (
     <div>
       <svg

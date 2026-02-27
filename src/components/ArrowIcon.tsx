@@ -1,4 +1,11 @@
-function ArrowIcon({ color, className }) {
+import React from "react";
+
+type IArrowIcon = {
+  color?: "String";
+  className?: string;
+};
+
+function ArrowIcon({ color, className }: IArrowIcon) {
   return (
     <div>
       <svg

@@ -1,4 +1,12 @@
-function ArrowDown({ color, className }) {
+import React from "react";
+
+type IColor = {
+  color: string;
+  className: string;
+  user: any;
+};
+
+function ArrowDown({ color, className }: IColor) {
   return (
     <div>
       <svg

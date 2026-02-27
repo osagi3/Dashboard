@@ -41,7 +41,6 @@ function NavBar() {
       >
         Sign out
       </Button>
-      {/* <Outlet /> */}
     </div>
   );
 }

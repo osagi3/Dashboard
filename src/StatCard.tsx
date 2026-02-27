@@ -1,3 +1,5 @@
+import React from "react";
+
 function StatCard({ label, value, icon, displayValue, cardsPercent }) {
   const positive = value > 0;
   const nagative = value < 0;

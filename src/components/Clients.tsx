@@ -1,4 +1,11 @@
-function Clients({ color, className }) {
+import React from "react";
+
+type IClient = {
+  className?: string;
+  color?: string;
+};
+
+function Clients({ color, className }: IClient) {
   return (
     <div>
       <svg

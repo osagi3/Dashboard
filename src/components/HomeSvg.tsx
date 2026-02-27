@@ -1,4 +1,11 @@
-function HomeSvg({ color, className }) {
+import React from "react";
+
+type IHomeSvg = {
+  className?: string;
+  color: string;
+};
+
+function HomeSvg({ color, className }: IHomeSvg) {
   return (
     <div>
       <svg

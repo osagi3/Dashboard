@@ -1,6 +1,20 @@
 import { useState } from "react";
+import React from "react";
 
-function RecentUsersTable({ users }) {
+interface user {
+  id: number;
+  name: string;
+  email: string;
+  company: {
+    name: string;
+  };
+}
+
+interface IRecentUsersTable {
+  users: user[];
+}
+
+function RecentUsersTable({ users }: IRecentUsersTable) {
   const [sortField, setSortField] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import React from "react";
 import StatCard from "./StatCard";
-// import { getDashboardData } from "./ApiBox";
 import { getDashboardData, getRecentUser } from "./ApiBox";
 
 import Users from "./components/Users";
@@ -8,6 +8,7 @@ import Clients from "./components/Clients";
 import MoneySvg from "./components/MoneySvg";
 import UsersChart from "./UsersChart";
 import RecentUsersTable from "./RecentUsersTable";
+import ArrowDown from "./components/ArrowUp";
 
 function Dashboard() {
   const [usersToday, setUsersToday] = useState(0);
@@ -64,10 +65,13 @@ function Dashboard() {
   return (
     <div className="flex-col bg-gray-200 min-h-screen">
       <div className="flex gap-5 p-5">
+        <ArrowDown color={"red"} className="" user={true} />
         <StatCard
           label="Users"
           value={usersToday}
           icon={<Users color="white" className="w-7" />}
+          displayValue={""}
+          cardsPercent={""}
         />
 
         <StatCard
@@ -75,12 +79,15 @@ function Dashboard() {
           value={todayGrowth}
           displayValue={formattedGrowth}
           icon={<MoneySvg color="white" className="w-7" />}
+          cardsPercent={""}
         />
 
         <StatCard
           label="Revenue"
           value={totalRevenue}
           icon={<Clients color="white" className="w-7" />}
+          displayValue={""}
+          cardsPercent={""}
         />
       </div>
       <UsersChart data={chartData} />
